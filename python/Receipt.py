@@ -60,6 +60,7 @@ class Receipt(object):
         separator2 = ("=" * cls.SeparatorWidth, "")
 
         # First just list all the entries
+        lines.append(separator2)
         totalBeforePromos = 0.0
         for entry in basket.entries():
             count = entry.count()

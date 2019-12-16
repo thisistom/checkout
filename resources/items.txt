@@ -1,6 +1,4 @@
 cabbage
-cabbage
-carrots
 carrots
 lettuce
 lettuce
@@ -24,6 +22,3 @@ spaghetti hoops
 spaghetti hoops
 sweetcorn
 sweetcorn
-
-a very long title of something extremely expensive and rare that might mess up receipts
-a very long title of something extremely expensive and rare that might mess up receipts

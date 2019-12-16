@@ -20,15 +20,32 @@ To try out the tool using the provided example files, run::
 You should expect to see output which looks something like this:
 
 ::
-
- =========================
- 1 x lettuce        @ 0.50
- 1 x carrots        @ 1.75
- 2 x chickpeas      @ 0.75
- 3 x potato waffles @ 2.50
- =========================
- TOTAL   = 8.75
- SAVINGS = 2.50
+   ========================================================
+   potato waffles
+                12 @ 2.50                             30.00
+   carrots                                             1.75
+   lettuce
+                 2 @ 0.50                              1.00
+   sweetcorn
+                 2 @ 0.60                              1.20
+   chickpeas
+                 2 @ 0.75                              1.50
+   cabbage                                             1.25
+   spaghetti hoops
+                 2 @ 1.50                              3.00
+   --------------------------------------------------------
+   SUB-TOTAL:                                         39.70
+   --------------------------------------------------------
+   OFFERS:
+     potato waffles - 3 for 2                        -10.00
+     canned - buy 3 get cheapest free                 -0.75
+     canned - buy 3 get cheapest free                 -0.60
+     vegetables - buy 3 get cheapest free             -0.50
+   --------------------------------------------------------
+   TOTAL SAVINGS:                                     11.85
+   ========================================================
+   TOTAL TO PAY:                                      27.85
+   ========================================================
 
 Inventory
 ---------
