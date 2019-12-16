@@ -162,24 +162,6 @@ class Basket(object):
 
         return self.__savings
 
-    def items(self):
-        """
-        Returns a flat list of the items in the basket.
-
-        Returns:
-            list of Item: The items in the basket.
-        """
-        result = []
-
-        for name, entry in self._entriesByName.iteritems():
-            item = entry.item()
-            count = entry.count()
-
-            for x in xrange(count):
-                result.append(item)
-
-        return result
-
     def numItems(self):
         """
         Returns:
