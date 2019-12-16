@@ -1,0 +1,21 @@
+#!/usr/bin/env python
+
+import cProfile
+from python.main import readInventory, readItems, printShoppingBasket
+
+inventoryFile = "./test/resources/bigInventory.csv"
+itemsFile = "./test/resources/selectedWords.txt"
+
+readInventoryCommand = "readItems(\"%s\")" % inventoryFile
+readItemsCommand = "readItems(\"%s\")" % itemsFile
+printCommand = "printShoppingBasket(\"%s\", readItems(\"%s\"))" % (inventoryFile, itemsFile)
+
+print("*** PROFILING READ INVENTORY FILE ... ***")
+cProfile.run(readInventoryCommand)
+
+print("*** PROFILING READ ITEMS FILE ... ***")
+cProfile.run(readItemsCommand)
+
+print("*** PROFILING PRINT SHOPPING BASKET ... ***")
+cProfile.run(printCommand)
+
