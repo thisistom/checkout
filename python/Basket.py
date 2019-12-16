@@ -240,6 +240,7 @@ class Basket(object):
         for entry in entries:
             item = entry.item()
 
+            # Left-justify the count and name; right-justify the price
             itemCount = str(entry.count()).ljust(maxCountLength)
             itemName = item.name().ljust(maxNameLength)
             itemPrice = ("%.2f" % item.price()).rjust(maxPriceLength)

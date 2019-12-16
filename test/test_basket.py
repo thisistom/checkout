@@ -9,6 +9,7 @@ from python.Item import Item
 beans = Item("beans", 1.0, "canned")
 spaghettiHoops = Item("spaghetti hoops", 1.5, "canned")
 chickpeas = Item("chickpeas", 0.75, "canned")
+
 peas = Item("peas", 1.5, "frozen")
 potatoWaffles = Item("potato waffles", 2.5, "frozen")
 iceCream = Item("ice cream", 4.0, "frozen")
@@ -172,7 +173,7 @@ class TestCheapestFreeBasket(_BaseTestCase):
             basket.addItem("potato waffles")
             basket.addItem("ice cream")
 
-        # By our generous lgoic, we should try and give as big a discount as
+        # By our generous logic, we should try and give as big a discount as
         # possible, so there should be one free potato waffle and one free peas
         self.assertEqual(basket.total(), 2 * iceCream.price() + potatoWaffles.price() + peas.price())
         self.assertEqual(basket.savings(), potatoWaffles.price() + peas.price())
