@@ -18,9 +18,9 @@ name,price,promoGroup
 "potato waffles",2.5,"frozen"
 "lettuce",0.5,"vegetables"
 
-An example inventory is also provided at resources/inventory.csv.
+An example inventory is also provided at `resources/inventory.csv`.
 
-To see the contents of the inventory, use the "--list" flag::
+To see the contents of the inventory, use the `--list` flag::
 
  checkout resources/inventory.csv --list
 
@@ -28,7 +28,7 @@ Items
 -----
 
 To compute the contents of a shopping cart, you must specify some items, using
-the --items flag. For example::
+the `--items` or `--itemsFile` flags. For example::
 
  checkout resources/inventory.csv --items lettuce peas
 
@@ -40,6 +40,6 @@ Items can also be specified in a text file containing one item per line::
 
  checkout resources/inventory.csv --itemsFile resources/items.txt
 
-An example items file is provided at resources/items.txt.
+An example items file is provided at `resources/items.txt`.
 
 
