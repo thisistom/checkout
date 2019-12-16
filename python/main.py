@@ -83,6 +83,11 @@ def printShoppingBasket(inventoryFile, itemNames):
         itemNames (list of str): The names of the items for which to calculate
             and print the cost and savings.
     """
+    # Exit early if we haven't been given any items
+    if not itemNames:
+        print("[WARNING] : no items found.")
+        return
+
     # Read the inventory from disk
     inventory = readInventory(inventoryFile)
     if inventory is None:
