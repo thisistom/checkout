@@ -4,6 +4,9 @@ name,price,promoGroup
 "chickpeas",0.75,"canned"
 "sweetcorn",0.6,"canned"
 "peas",1.5,"frozen"
+"itemWithNoPromoGroup",4.44
+"itemPrecedingAnEmptyLine",99.99,"dummy"
+
 "potato waffles",2.5,"frozen"
 "ice cream",4.0,"frozen"
 "carrots",1.75,"vegetables"

@@ -1,5 +1,9 @@
 from collections import defaultdict
 
+from Promos import (
+    ThreeForTwoPromo,
+    CheapestFreePromo
+)
 
 class BasketEntry(object):
     """
@@ -107,6 +111,7 @@ class Basket(object):
         # The cost + savings once computed
         self.__total = 0.0
         self.__savings = 0.0
+        self.__promos = []
 
     # Public Instance Methods -------------------------------------------------
 
@@ -162,6 +167,16 @@ class Basket(object):
 
         return self.__savings
 
+    def promos(self):
+        """
+        Returns:
+            list of _PromoEntry. The promotional offers in this basket.
+        """
+        if self.__dirty:
+            self.__compute()
+
+        return list(self.__promos)
+
     def numItems(self):
         """
         Returns:
@@ -173,6 +188,13 @@ class Basket(object):
             numItems += count
 
         return numItems
+
+    def entries(self):
+        """
+        Returns:
+            list of BasketEntry. A list of the entries in this basket.
+        """
+        return list(self._entriesByName.values())
 
     def clear(self):
         """
@@ -194,60 +216,6 @@ class Basket(object):
         for itemName, entry in other._entriesByName.iteritems():
             self.addItem(itemName, entry.count())
 
-    def getReceipt(self):
-        """
-        Returns:
-            str. String representing the receipt for this basket.
-        """
-        if self.numItems() == 0:
-            return "No items in basket."
-
-        entries = []
-        maxNameLength = 0
-        maxCountLength = 0
-        maxPriceLength = 0
-
-        # Find the maximum length of the name, count and price for all items,
-        # so that we can format things nicely
-        for name, entry in self._entriesByName.iteritems():
-            count = entry.count()
-            if count > 0:
-                entries.append(entry)
-                maxNameLength = max(maxNameLength, len(name))
-                maxCountLength = max(maxCountLength, len("%d" % count))
-                maxPriceLength = max(maxPriceLength, len("%.2f" % entry.item().price()))
-
-        # Create each line of the output
-        lines = []
-        for entry in entries:
-            item = entry.item()
-
-            # Left-justify the count and name; right-justify the price
-            itemCount = str(entry.count()).ljust(maxCountLength)
-            itemName = item.name().ljust(maxNameLength)
-            itemPrice = ("%.2f" % item.price()).rjust(maxPriceLength)
-
-            line = "%s x %s @ %s" % (itemCount, itemName, itemPrice)
-            lines.append(line)
-
-        separator = "=" * len(lines[-1])
-
-        lines.insert(0, separator)
-        lines.append(separator)
-
-        # Do the same with the total + savings, formatting them nicely
-        total = self.total()
-        savings = self.savings()
-
-        totalStr = "%0.2f" % self.total()
-        savingsStr = "%0.2f" % self.savings()
-        maxFooterLength = max(len(totalStr), len(savingsStr))
-
-        lines.append("TOTAL   = %s" % totalStr.rjust(maxFooterLength))
-        lines.append("SAVINGS = %s" % savingsStr.rjust(maxFooterLength))
-
-        return "\n".join(lines)
-
     # Private Instance Methods ------------------------------------------------
 
     def __compute(self):
@@ -256,6 +224,7 @@ class Basket(object):
         """
         self.__total = 0.0
         self.__savings = 0.0
+        self.__promos = []
 
         # Make a duplicate basket to save our state
         originalBasket = Basket(self.__inventory)
@@ -291,9 +260,13 @@ class Basket(object):
                 item = entry.item()
                 price = item.price()
 
-                self.__total += numThreeForTwos * 2 * price
-                self.__savings += numThreeForTwos * price
+                promo = ThreeForTwoPromo(item, numThreeForTwos)
+                self.__promos.append(promo)
 
+                self.__total += promo.cost()
+                self.__savings += promo.savings()
+
+                # Take 3 off the counter for this entry
                 entry.decrement(numThreeForTwos * 3)
 
     def __processPromoGroups(self):
@@ -331,8 +304,12 @@ class Basket(object):
                     if newCount == 0:
                         entries.pop()
 
-                self.__total += items[0].price() + items[1].price()
-                self.__savings += items[2].price()
+                promo = CheapestFreePromo(items)
+                self.__promos.append(promo)
+
+                self.__total += promo.cost()
+                self.__savings += promo.savings()
+
 
                 numItems -= 3
 

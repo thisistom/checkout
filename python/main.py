@@ -2,6 +2,7 @@ import argparse
 
 from Basket import Basket
 from Inventory import Inventory
+from Receipt import Receipt
 
 
 def readInventory(inventoryFile):
@@ -44,7 +45,9 @@ def readItems(itemsFile):
         with open(itemsFile) as itemsFile:
            for item in itemsFile:
                 # Strip leading/trailing whitespace
-               result.append(item.strip())
+                strippedItem = item.strip()
+                if strippedItem:
+                    result.append(strippedItem)
 
     except IOError as exception:
         print("[ERROR] : couldn't read items from file: %r - %s"
@@ -87,14 +90,14 @@ def printShoppingBasket(inventoryFile, itemNames):
 
     # Create a basket from the given items
     basket = Basket(inventory)
-
     for itemName in itemNames:
         try:
             basket.addItem(itemName)
         except KeyError as exception:
             print("[WARNING] : couldn't find item %r in inventory" % itemName)
 
-    receipt = basket.getReceipt()
+    # Create a receipt from the basket
+    receipt = Receipt.GetReceipt(basket)
     print(receipt)
 
 

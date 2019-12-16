@@ -9,3 +9,4 @@ name,price,promoGroup
 "carrots",1.75,"vegetables"
 "cabbage",1.25,"vegetables"
 "lettuce",0.5,"vegetables"
+"a very long title of something extremely expensive and rare that might mess up receipts",1234567890.12,"antiquities"
