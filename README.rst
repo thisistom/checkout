@@ -20,6 +20,7 @@ To try out the tool using the provided example files, run::
 You should expect to see output which looks something like this:
 
 ::
+
    ========================================================
    potato waffles
                 12 @ 2.50                             30.00
@@ -46,6 +47,7 @@ You should expect to see output which looks something like this:
    ========================================================
    TOTAL TO PAY:                                      27.85
    ========================================================
+
 
 Inventory
 ---------
