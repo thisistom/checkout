@@ -119,18 +119,19 @@ class Inventory(object):
         # Get the longest entry in each field
         maxNameLength = 0
         maxPriceLength = 0
-        maxPromoGroupLength = 0
 
         for item in self.__items.itervalues():
             maxNameLength = max(maxNameLength, len(item.name()))
             maxPriceLength = max(maxPriceLength, len("%.2f" % item.price()))
-            maxPromoGroupLength = max(maxPromoGroupLength, len(item.promoGroup()))
 
-        lines = ["%s @ %s - %s" % (item.name().ljust(maxNameLength),
-                                   ("%.2f" % item.price()).rjust(maxPriceLength),
-                                   item.promoGroup().ljust(maxPriceLength))
-                 for item in self.__items.itervalues()]
+        lines = []
+        for item in self.__items.itervalues():
+            name = item.name().ljust(maxNameLength)
+            price = ("%.2f" % item.price()).rjust(maxPriceLength)
+            promoGroup = item.promoGroup()
+
+            line = "%s @ %s - %s" % (name, price, promoGroup)
+            lines.append(line)
 
         return "\n".join(lines)
-
 
