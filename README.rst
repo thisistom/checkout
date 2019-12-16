@@ -18,9 +18,7 @@ Inventory
 The inventory should be specified in CSV format, with a single header row and
 three columns representing each item's name, price and promo group respectively.
 
-For example:
-
-::
+For example::
     name,price,promoGroup
     "beans",1.0,"canned"
     "potato waffles",2.5,"frozen"
