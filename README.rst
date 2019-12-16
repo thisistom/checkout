@@ -3,7 +3,7 @@ checkout
 
 This project computes the cost of a shopping basket full of items,
 given an inventory describing the items, their prices and the promotional
-group of which they are part.
+group they belong to.
 
 Two types of promotions are supported:
 
