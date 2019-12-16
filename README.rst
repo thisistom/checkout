@@ -5,6 +5,11 @@ This project computes the cost of a shopping basket full of items,
 given an inventory describing the items, their prices and the promotional
 group of which they are part.
 
+Two types of promotions are supported:
+
+ * Buy 3 of the same item, and get one free
+ * Buy 3 items from the same promotional group, and get the cheapest free
+
 Quick Start
 -----------
 
