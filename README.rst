@@ -12,6 +12,19 @@ To try out the tool using the provided example files, run::
 
  ./checkout resources/inventory.csv --itemsFile resources/items.txt
 
+You should expect to see output which looks something like this:
+
+::
+
+ =========================
+ 1 x lettuce        @ 0.50
+ 1 x carrots        @ 1.75
+ 2 x chickpeas      @ 0.75
+ 3 x potato waffles @ 2.50
+ =========================
+ TOTAL   = 8.75
+ SAVINGS = 2.50
+
 Inventory
 ---------
 
